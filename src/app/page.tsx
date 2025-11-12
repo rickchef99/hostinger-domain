@@ -41,10 +41,21 @@ function Home() {
   const handleSubmit = async (data: any) => {
     setIsLoading(true);
     const domains = data.domains;
-    await Promise.allSettled(
-      domains.map((domain: any, index: number) => handleRegister(domain, index))
+    toast.promise(
+      Promise.allSettled(
+        domains.map((domain: any, index: number) =>
+          handleRegister(domain, index)
+        )
+      ),
+      {
+        loading: 'Registrando domínios...',
+        success: 'Domínios registrados com sucesso',
+        error: 'Erro ao registrar domínios',
+        finally: () => {
+          setIsLoading(false);
+        },
+      }
     );
-    setIsLoading(false);
   };
 
   return (
