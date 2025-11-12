@@ -6,7 +6,10 @@ import { Check, Loader, X } from 'lucide-react';
 
 import { TextField } from 'maquinaweb-ui/text-field';
 
-const CardDomain: React.FC<{ index: number }> = ({ index }) => {
+const CardDomain: React.FC<{ index: number; token: string }> = ({
+  index,
+  token,
+}) => {
   const { watch, control, setValue } = useFormContext();
   const prefix = `domains.${index}`;
   const { append } = useFieldArray({
@@ -28,6 +31,7 @@ const CardDomain: React.FC<{ index: number }> = ({ index }) => {
     url: '/api/check',
     params: {
       domain: domainDebounced,
+      token,
     },
     disabled: !domainDebounced,
   });

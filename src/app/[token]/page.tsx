@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -13,7 +13,8 @@ import { Loader } from 'lucide-react';
 import ky from 'ky';
 import { toast } from 'sonner';
 
-function Home() {
+function Page({ params }: { params: Promise<{ token: string }> }) {
+  const { token } = use(params);
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm({
     defaultValues: {
@@ -27,6 +28,7 @@ function Home() {
       await ky.post('/api/register', {
         json: {
           domain: domain.domain,
+          token,
         },
         timeout: 60000,
       });
@@ -66,7 +68,7 @@ function Home() {
           className="flex flex-col h-fit w-fit gap-4 bg-card shadow-lg rounded-md p-4"
         >
           {form.watch('domains').map((domain, index) => (
-            <CardDomain key={`domain-${index}`} index={index} />
+            <CardDomain key={`domain-${index}`} index={index} token={token} />
           ))}
 
           <Button type="submit" disabled={isLoading}>
@@ -79,4 +81,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Page;
