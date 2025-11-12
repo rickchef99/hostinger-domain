@@ -34,8 +34,8 @@ const CardDomain: React.FC<{ index: number }> = ({ index }) => {
 
   const handleChange = (value: string) => {
     if (value.at(-1) === ' ') {
-      setValue(`${prefix}.domain`, value.trim());
-      append({ domain: '' });
+      setValue(`${prefix}.domain`, '');
+      append({ domain: value.trim() });
     }
   };
 

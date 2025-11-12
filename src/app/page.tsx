@@ -46,12 +46,9 @@ function Home() {
           onSubmit={form.handleSubmit(handleSubmit)}
           className="flex flex-col h-fit w-fit gap-4 bg-card shadow-lg rounded-md p-4"
         >
-          {form
-            .watch('domains')
-            ?.reverse()
-            .map((_, index) => (
-              <CardDomain key={`domain-${index}`} index={index} />
-            ))}
+          {form.watch('domains').map((domain, index) => (
+            <CardDomain key={`domain-${index}`} index={index} />
+          ))}
 
           <Button type="submit">Registrar</Button>
         </form>
