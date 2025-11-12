@@ -3,10 +3,6 @@ import { NextRequest } from 'next/server';
 import { hostinger } from '@/services/hostinger';
 
 export async function POST(request: NextRequest) {
-  const token = request.nextUrl.searchParams.get('token');
-  if (!token) {
-    return Response.json({ error: 'Token is required' }, { status: 400 });
-  }
   try {
     const body = await request.json();
     console.log({
@@ -19,7 +15,7 @@ export async function POST(request: NextRequest) {
         item_id: 'hostingercombr-domain-site-brl-1y',
       },
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${body.token}`,
       },
     });
     return Response.json(await response.json());
