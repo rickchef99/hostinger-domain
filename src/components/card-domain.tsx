@@ -40,7 +40,7 @@ const CardDomain: React.FC<{ index: number }> = ({ index }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex items-center gap-2">
       <TextField
         prefix={prefix}
         name="domain"
@@ -58,12 +58,8 @@ const CardDomain: React.FC<{ index: number }> = ({ index }) => {
           <X className="size-3.5 absolute right-2 top-1/2 -translate-y-1/2 text-red-500" />
         )}
       </TextField>
-      {status === 'registering' && (
-        <Loader className="size-3.5 animate-spin absolute right-2 top-1/2 -translate-y-1/2" />
-      )}
-      {status === 'registered' && (
-        <Check className="size-3.5 absolute right-2 top-1/2 -translate-y-1/2 text-green-500" />
-      )}
+      {status === 'registering' && <Loader className="size-3.5 animate-spin" />}
+      {status === 'registered' && <Check className="size-3.5 text-green-500" />}
     </div>
   );
 };
