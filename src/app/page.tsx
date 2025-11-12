@@ -28,11 +28,12 @@ function Home() {
         json: {
           domain: domain.domain,
         },
+        timeout: 60000,
       });
       form.setValue(`domains.${index}.status` as any, 'registered');
     } catch (error) {
       console.error(error);
-      toast.error('Erro ao registrar domínio');
+      toast.error(`Erro ao registrar domínio: ${domain.domain}`);
       form.setValue(`domains.${index}.status` as any, 'error');
     }
   };

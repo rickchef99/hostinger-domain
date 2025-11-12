@@ -7,9 +7,7 @@ export async function GET(request: NextRequest) {
   if (!domain) {
     return Response.json({ error: 'Domain is required' }, { status: 400 });
   }
-  console.log(domain);
   const [tld, hostname] = domain.split('.').reverse();
-  console.log(tld, hostname);
   const response = await hostinger.post('domains/v1/availability', {
     json: {
       domain: hostname,
