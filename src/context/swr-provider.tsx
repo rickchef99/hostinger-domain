@@ -44,6 +44,7 @@ export const SWRProvider: React.FC<{
         fetcher,
         keepPreviousData: true,
         errorRetryCount: 0,
+        errorRetryInterval: Infinity,
         revalidateOnFocus: false,
       }}
     >
