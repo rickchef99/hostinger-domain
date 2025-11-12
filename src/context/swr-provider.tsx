@@ -18,19 +18,17 @@ const fetcher = async (
     return null;
   }
 
-  const isAbsolute = (u: string) => /^https?:\/\//.test(u);
-
   try {
     if (typeof url === 'object') {
       const response = await ky
-        .post(url.url, {
+        .get(url.url, {
           ...url,
           searchParams: pickBy(url.params, identity),
         })
         .json();
       return response;
     }
-    const response = await ky.post(url).json();
+    const response = await ky.get(url).json();
     return response;
   } catch (error) {
     throw error;
