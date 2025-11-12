@@ -4,6 +4,10 @@ import './globals.css';
 
 import { Inter } from 'next/font/google';
 
+import { SWRProvider } from '@/context/swr-provider';
+
+import { Toaster } from 'sonner';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,7 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <SWRProvider>{children}</SWRProvider>
+        <Toaster />
+      </body>
     </html>
   );
 }
